@@ -72,11 +72,21 @@ a Multi-Port Memory Controller (MPMC) must implement the HMASTLOCK signal
 It is required that all transfers in a locked sequence are to the same Subordinate address region.
 
 ## Protection Control  
-HPROT[3:0]表明传输的性质：
-![image](https://user-images.githubusercontent.com/34599267/184522601-a57fb362-52ff-4e3f-974e-30b59385d76e.png)
+HPROT[6:0]表明传输的性质：
+![image](https://user-images.githubusercontent.com/34599267/184522694-0707fcb3-c36c-44a2-8c97-a38f13a19b32.png)
 
+根据这7bit信号，AHB总线允许以下几种memory type 出现：
+![image](https://user-images.githubusercontent.com/34599267/184530514-5ac849be-1871-46a1-b243-020524a04ab1.png)
+
+## Secure Transfer：
+An interface that supports Secure transfers has an additional signal, HNONSEC. This signal is asserted for a 
+Non-secure transfer and deasserted for a Secure transfer.  
+HNONSEC is an address phase signal and must be constant throughout a burst.  
 
 Q:
 ### IDLE transfer 时，置起HSEL有什么用？
 ### After lock transfer, why does it suggests that manager inserts an IDLE transfer???
+
+### 为什么Lookup都是1了，Allocate bit却可以是0、1？如果写命中了，也可以选择不同步cache吗？
+
 
